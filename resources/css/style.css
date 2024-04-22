@@ -1,0 +1,205 @@
+:root {
+    /*colores de prueba*/
+    --color1: #f8f6f6;
+    --color2: #b1d1ce;
+    --color3: #1e201e;
+    --color4: #959595;
+    --color5: #eddfbf;
+    --color6: #ffd36e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--color3);
+    /*fuentes de prueba*/
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+;
+
+/*  ----------------------  */
+/*      INICIO: HEADER      */
+/*  ----------------------  */
+
+
+/*No se modificó este bloque por el bootstrap*/
+.nav-link {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--color5);
+    list-style: none;
+}
+/*No se modificó este bloque por el bootstrap*/
+
+
+
+.nav-link:hover {
+    color: var(--color3);
+    font-weight: bold;
+    transition: .3s;
+}
+
+/*  -------------------  */
+/*      FIN: HEADER      */
+/*  -------------------  */
+
+
+/*  -----------------------  */
+/*      INICIO: TITULOS      */
+/*  -----------------------  */
+.titulo h1 {
+    font-size: 2.5rem;
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.titulo h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.titulo {
+    border-bottom: 1px solid;
+}
+
+/*  --------------------  */
+/*      FIN: TITULOS      */
+/*  --------------------  */
+
+/* ------------------------------- */
+/*  INICIO: ICONOS (compra|envios) */
+/* ------------------------------- */
+
+.icon-sales {
+    margin-top: 5%;
+    margin-left: 5%;
+    padding: 20px 20px;
+}
+
+/* ------------------------------- */
+/*   FIN: ICONOS (compra|envios)   */
+/* ------------------------------- */
+
+
+
+
+/*  ----------------------  */
+/*      INICIO: FOOTER      */
+/*  ----------------------  */
+.footer {
+    background-color: var(--color6);
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    width: 100%;
+    height: auto;
+    bottom: 0;
+
+    padding: 20px;
+    color: var(--color3);
+    margin: 0;
+}
+
+.copyright p {
+    margin-bottom: 0 !important;
+    font-size: 8px;
+}
+
+.col-lg-4 a,
+ul,
+li {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--color3);
+    list-style: none;
+}
+
+
+.col-lg-4 a:hover {
+    font-weight: bolder;
+}
+
+.col-lg-4 p {
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+/*  -------------------  */
+/*      FIN: FOOTER      */
+/*  -------------------  */
+
+
+/*  -------------------------------  */
+/*      INICIO: BOTON WHATSAPP       */
+/*  -------------------------------  */
+.btn-wsp {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background-color: #4dc247;
+    border-radius: 32px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-wsp img {
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
+}
+
+.btn-wsp:hover {
+    opacity: 60%;
+}
+
+/*  ----------------------------  */
+/*       FIN: BOTON WHATSAPP      */
+/*  ----------------------------  */
+
+
+/*  ---------------------------  */
+/*        INICIO: CARROUSEL      */
+/*  ---------------------------  */
+
+
+/*  ------------------------  */
+/*       FIN: CARROUSEL       */
+/*  ------------------------  */
+
+
+
+/*  ----------------------------  */
+/*        INICIO: RESPONSIVE      */
+/*  ----------------------------  */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+@media only screen and (max-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
+
+/*  -------------------------  */
+/*       FIN: RESPONSIVE       */
+/*  -------------------------  */
