@@ -1,6 +1,6 @@
 let myHeader = `
 <nav class="navbar navbar-expand-lg bg-secondary">
-        <a class="navbar-brand" href="index.html"><img class="logo" src="../resources/img/logo.png" alt="Universo Literario" width="50%"></a>
+        <a class="navbar-brand" href="index.html"><img class="logo" src="resources/img/logo.png" alt="Universo Literario" width="50%"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
