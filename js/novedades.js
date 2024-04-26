@@ -5,20 +5,18 @@ $(document).ready(function () {
 
 function mostrarReseñaDeLibro(libro) {
     let reseñaHtml = `
-        <div class="row">
-            <div class="col-lg-6 mt-5">
-                <img class="custom-img" src="${libro.imageLinks.thumbnail}" alt="" />
-            </div>
-            <div class="col-lg-6 mt-5">
-                <h3 class="">${libro.title}</h3>
-                <p class="mt-4">
-                    ${libro.description ? libro.description : "No hay descripción disponible para este libro."}
-                </p>
-                <p>
-                    <a href="${libro.previewLink}">Leer más</a>
-                </p>
-            </div>
-        </div>
+    <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
+        <img class="custom-img img-fluid" src="${libro.imageLinks.thumbnail}" alt="" />
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
+        <h3 class="">${libro.title}</h3>
+        <p class="mt-4">
+            ${libro.description ? libro.description : "No hay descripción disponible para este libro."}
+        </p>
+    </div>
+    </div>
+
     `;
 
     // Agregar la reseña al contenedor
@@ -28,7 +26,7 @@ function mostrarReseñaDeLibro(libro) {
 // Función para cargar las reseñas de los libros más nuevos
 function cargarReseñasDeLibrosNuevos() {
     // URL base de la API de Google Books para obtener los libros más nuevos
-    let apiUrl = "https://www.googleapis.com/books/v1/volumes?q=newest&maxResults=4"; // Cambié a 4 para cargar dos libros adicionales
+    let apiUrl = "https://www.googleapis.com/books/v1/volumes?q=newest&maxResults=4";
 
     $.ajax({
         url: apiUrl,
@@ -41,7 +39,7 @@ function cargarReseñasDeLibrosNuevos() {
             }
 
             // Iterar sobre los libros de la respuesta y mostrar sus reseñas
-            for (let i = 0; i < 2; i++) { // Solo mostramos los primeros dos libros
+            for (let i = 0; i < 2; i++) {
                 if (i >= response.items.length) break;
                 let libro = response.items[i].volumeInfo;
                 mostrarReseñaDeLibro(libro);
@@ -74,7 +72,7 @@ function buscarReseñasPorTitulo(titulo) {
         url: apiUrl,
         method: "GET",
         success: function (response) {
-            console.log("Respuesta de la API:", response); // Agregar esta línea para depurar la respuesta
+            console.log("Respuesta de la API:", response);
             // Limpiar el contenedor de reseñas
             $("#reseñas-container").empty();
 
@@ -112,7 +110,7 @@ $(document).on("click", "#ver-mas-libros", function () {
 
 function cargarSiguientesDosLibros() {
     // URL base de la API de Google Books para obtener los libros más nuevos
-    let apiUrl = "https://www.googleapis.com/books/v1/volumes?q=newest&maxResults=4&startIndex=2"; // Comenzamos desde el tercer libro
+    let apiUrl = "https://www.googleapis.com/books/v1/volumes?q=newest&maxResults=4&startIndex=2"; 
 
     $.ajax({
         url: apiUrl,
@@ -126,14 +124,14 @@ function cargarSiguientesDosLibros() {
 
             // Iterar sobre los libros de la respuesta y mostrar sus reseñas
             for (let i = 0; i < 2; i++) { // Solo mostramos dos libros adicionales
-                let libroIndex = i; // Cambiado de 'i + 2' a 'i'
+                let libroIndex = i;
                 if (libroIndex >= response.items.length) break;
                 let libro = response.items[libroIndex].volumeInfo;
                 mostrarReseñaDeLibro(libro);
             }
 
             // Si no hay más libros después de estos dos, ocultar el botón "Ver más"
-            if (response.items.length <= 4) { // Cambiado de 4 a 6
+            if (response.items.length <= 4) {
                 $("#ver-mas-libros").hide();
             }
         },

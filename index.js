@@ -20,16 +20,18 @@ $(document).ready(function () {
                     let titulo = item.volumeInfo.title;
                     let precio = item.saleInfo.listPrice ? item.saleInfo.listPrice.amount : 'No disponible';
                     $('#libros-container').append(`
-                        <div class="col-md-3">
-                            <div class="card mb-4">
-                                <img src="${portada}" class="card-img-top" alt="${titulo}">
-                                <div class="card-body">
-                                    <h5 class="card-title">${titulo}</h5>
-                                    <p class="card-text">Precio: ${precio}</p>
-                                    <a href="#" class="btn btn-primary">Ver Detalles</a>
-                                </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="card">
+                            <img src="${portada}" class="card-img-top img-fluid" alt="${titulo}">
+                            <div class="card-body">
+                                <h5 class="card-title">${titulo}</h5>
+                                <p class="card-text">Precio: ${precio}</p>
+                                <a href="#" class="btn btn-primary">Ver Detalles</a>
                             </div>
                         </div>
+                    </div>
+                
+                
                     `);
                 });
                 startIndex += maxResults;
