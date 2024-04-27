@@ -21,17 +21,17 @@ $(document).ready(function () {
                     let precio = item.saleInfo.listPrice ? item.saleInfo.listPrice.amount : 'No disponible';
                     $('#libros-container').append(`
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="d-flex justify-content-center align-items-center">
                         <div class="card">
                             <img src="${portada}" class="card-img-top img-fluid" alt="${titulo}">
                             <div class="card-body">
                                 <h5 class="card-title">${titulo}</h5>
                                 <p class="card-text">Precio: ${precio}</p>
                                 <a href="#" class="btn btn-primary">Ver Detalles</a>
-                            </div>
+                             </div>
                         </div>
-                    </div>
-                
-                
+                     </div>
+                     </div>
                     `);
                 });
                 startIndex += maxResults;

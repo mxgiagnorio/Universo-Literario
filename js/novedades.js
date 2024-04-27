@@ -7,15 +7,21 @@ function mostrarReseñaDeLibro(libro) {
     let reseñaHtml = `
     <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
-        <img class="custom-img img-fluid" src="${libro.imageLinks.thumbnail}" alt="" />
+        <div class="d-flex justify-content-center align-items-center">
+            <img class="custom-img img-fluid" src="${libro.imageLinks.thumbnail}" alt="" />
+        </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
-        <h3 class="">${libro.title}</h3>
-        <p class="mt-4">
-            ${libro.description ? libro.description : "No hay descripción disponible para este libro."}
-        </p>
+        <div class="d-flex justify-content-center align-items-center">
+            <h3 class="">${libro.title}</h3>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <p class="mt-4">
+                ${libro.description ? libro.description : "No hay descripción disponible para este libro."}
+            </p>
+        </div>
     </div>
-    </div>
+</div>
 
     `;
 
