@@ -160,17 +160,20 @@ function agregarLibro(libro, categoria) {
 
     let cardHtml = `
     <div class="producto col-12 col-md-6 col-lg-3">
-    <div class="card mb-4">
-        <img src="${thumbnailUrl}" class="card-img-top" alt="${libro.title}" />
-        <div class="card-body">
-            <h5 class="card-title">${libro.title}</h5>
-            <p class="card-text typeM bold">$XX</p> <!-- Falta el precio, ya que no está disponible en la API -->
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#btncomprar">
-                Agregar al carrito
-            </button>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="card mb-4">
+            <img src="${thumbnailUrl}" class="card-img-top" alt="${libro.title}" />
+            <div class="card-body">
+                <h5 class="card-title">${libro.title}</h5>
+                <p class="card-text typeM bold">$XX</p> <!-- Falta el precio, ya que no está disponible en la API -->
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#btncomprar">
+                    Agregar al carrito
+                </button>
+            </div>
         </div>
     </div>
-    </div>
+</div>
+
 
     `;
     $("#" + categoria.toLowerCase() + "-container").append(cardHtml);
