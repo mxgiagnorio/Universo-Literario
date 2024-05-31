@@ -1,53 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Icono de la Página -->
-    <link rel="icon" href="../../public/logo-ico.ico">
+    <link rel="icon" href="../../public/logo-ico.ico" />
     <!-- CSS Local -->
-    <link rel="stylesheet" href="../../css/index.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Font Awesome para iconos -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+      integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+      crossorigin="anonymous"
+    />
     <title>Universo literario</title>
-</head>
+  </head>
 
-<body>
-    <a class="navbar-brand container-fluid text-dark" href="../../index.html"><img class=" img-logo rounded-circle mr-2" src="../../public/logo.jpg"
-        alt="Universo Literario"><strong>Universo Literario</strong></a>
-    <div class="container bg-primary d-flex mt-4 justify-content-center align-items-center py-5">
-
-        <div class="col-md-6 py-4">
-            <form method="get">
-                <h2 class="text-center text-white">Inicio de Sesión</h2>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label text-white">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label text-white">Contraseña</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label text-white" for="exampleCheck1">Acepta Terminos y Condiciones</label>
-                </div>
-                <div class="mb-3 color-blanco">
-                    <a href="./registro.html" class="text-white">Registrarse</a>
-                </div>
-                <div class="mb-3 text-center">
-                    <button type="submit" class="btn btn-light">Iniciar Sesión</button>
-                </div>
-            </form>
-        </div>
-
+  <body>
+    <a class="navbar-brand container-fluid text-dark" href="../../index.html"
+      ><img
+        class="img-logo rounded-circle mr-2"
+        src="../../public/logo.jpg"
+        alt="Universo Literario"
+      /><strong>Universo Literario</strong></a
+    >
+    <div
+      class="container bg-primary d-flex mt-4 justify-content-center align-items-center py-5"
+    >
+      <div class="col-md-6 py-4">
+        <form
+          id="loginForm"
+          onsubmit="return validateForm(this, loginValidationRules)"
+        >
+          <h2 class="text-center text-white">Inicio de Sesión</h2>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label text-white"
+              >Correo Electrónico</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              name="email"
+              aria-describedby="emailHelp"
+            />
+            <div id="emailError" class="text-danger"></div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label text-white"
+              >Contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              name="password"
+              id="exampleInputPassword1"
+            />
+            <div id="passwordError" class="text-danger"></div>
+          </div>
+          <div class="mb-3 form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              name="terms"
+              id="exampleCheck1"
+            />
+            <label class="form-check-label text-white" for="exampleCheck1"
+              >Acepta Terminos y Condiciones</label
+            >
+            <div id="termsError" class="text-danger"></div>
+          </div>
+          <div class="mb-3 color-blanco">
+            <a href="./registro.html" class="text-white">Registrarse</a>
+          </div>
+          <div class="mb-3 text-center">
+            <button type="submit" class="btn btn-light">Iniciar Sesión</button>
+          </div>
+        </form>
+      </div>
     </div>
 
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-
+    <script src="validacion.js"></script>
+  </body>
 </html>
