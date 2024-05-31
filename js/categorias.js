@@ -1,27 +1,22 @@
 // Función para cargar libros desde la API por categoría
 function cargarLibrosPorCategoria(categoria) {
-    // URL base de la API de Google Books
     let apiUrl = "https://www.googleapis.com/books/v1/volumes?q=subject:" + categoria;
 
     $.ajax({
         url: apiUrl,
         method: "GET",
         success: function (response) {
-            // Limpiar el contenedor de libros
             $("#" + categoria.toLowerCase() + "-container").empty();
 
-            // Verificar si se encontraron resultados
             if (response.totalItems === 0) {
                 $("#" + categoria.toLowerCase() + "-container").html("<p>No se encontraron libros en esta categoría.</p>");
                 return;
             }
 
-            // Iterar sobre los datos de la API y agregar cada libro al contenedor
             for (let i = 0; i < Math.min(4, response.items.length); i++) {
-                agregarLibro(response.items[i].volumeInfo, categoria);
+                agregarLibroPorCategoria(response.items[i].volumeInfo, categoria);
             }
 
-            // Agregar botón "Ver más" si hay más de 4 libros
             if (response.items.length > 4) {
                 $("#" + categoria.toLowerCase() + "-container").append(`<button class="btn btn-primary ver-mas-btn" data-categoria="${categoria}">Ver más</button>`);
             }
@@ -32,10 +27,17 @@ function cargarLibrosPorCategoria(categoria) {
     });
 }
 
-// Manejar clic en el botón "Ver más"
+// Manejar clic en el botón "Ver más" para categorías
 $(document).on("click", ".ver-mas-btn", function () {
     let categoria = $(this).data("categoria");
     cargarMasLibros(categoria);
+});
+
+
+// Manejar clic en el botón "Ver más" para la búsqueda de libros
+$(document).on("click", ".ver-mas-btn-busqueda", function () {
+    let titulo = $(this).data("titulo");
+    cargarMasLibrosPorTituloBusqueda(titulo);
 });
 
 // Función para cargar más libros de una categoría
@@ -46,22 +48,17 @@ function cargarMasLibros(categoria) {
         url: apiUrl,
         method: "GET",
         success: function (response) {
-            // Obtener el número de tarjetas ya cargadas
             let numTarjetasCargadas = $("#" + categoria.toLowerCase() + "-container").children(".producto").length;
 
-            // Eliminar el botón "Ver más" antes de agregar más libros
             $(".ver-mas-btn[data-categoria='" + categoria + "']").remove();
 
-            // Iterar sobre los siguientes 4 datos de la API y agregar cada libro al contenedor
             for (let i = numTarjetasCargadas; i < Math.min(numTarjetasCargadas + 4, response.items.length); i++) {
-                agregarLibro(response.items[i].volumeInfo, categoria);
+                agregarLibroPorCategoria(response.items[i].volumeInfo, categoria);
             }
 
-            // Si no quedan más libros por cargar, ocultar el botón "Ver más"
             if (numTarjetasCargadas + 4 >= response.items.length) {
                 $(".ver-mas-btn[data-categoria='" + categoria + "']").hide();
             } else {
-                // Si quedan más libros, agregar el botón "Ver más" al final
                 $("#" + categoria.toLowerCase() + "-container").append(`<button class="btn btn-primary ver-mas-btn" data-categoria="${categoria}">Ver más</button>`);
             }
         },
@@ -71,28 +68,121 @@ function cargarMasLibros(categoria) {
     });
 }
 
-// Función para agregar un libro al contenedor
-function agregarLibro(libro, categoria) {
+
+// Función para cargar libros desde la API por título en la sección de libros
+function cargarLibrosPorTituloBusqueda(titulo) {
+    if (!titulo) {
+        console.error("El título no está definido.");
+        return;
+    }
+
+    let apiUrl = "https://www.googleapis.com/books/v1/volumes?q=" + titulo;
+
+    $.ajax({
+        url: apiUrl,
+        method: "GET",
+        success: function (response) {
+            $("#libro-busqueda-container").empty();
+
+            if (response.totalItems === 0) {
+                $("#libro-busqueda-container").html("<p>No se encontraron libros con ese título.</p>");
+                return;
+            }
+
+            for (let i = 0; i < Math.min(3, response.items.length); i++) {
+                agregarLibroPorBusqueda(response.items[i].volumeInfo);
+            }
+
+            if (response.items.length > 3) {
+                $("#libro-busqueda-container").append(`<button class="btn btn-primary ver-mas-btn-busqueda" data-titulo="${titulo}">Ver más</button>`);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error al cargar los libros:", error);
+        }
+    });
+}
+
+// Función para cargar más libros por título en la sección de libros
+function cargarMasLibrosPorTituloBusqueda(titulo) {
+    let apiUrl = "https://www.googleapis.com/books/v1/volumes?q=" + titulo;
+
+    $.ajax({
+        url: apiUrl,
+        method: "GET",
+        success: function (response) {
+            let numLibrosCargados = $("#libro-busqueda-container").children(".producto").length;
+            $(".ver-mas-btn-busqueda[data-titulo='" + titulo + "']").remove();
+
+            for (let i = numLibrosCargados; i < Math.min(numLibrosCargados + 3, response.items.length); i++) {
+                agregarLibroPorBusqueda(response.items[i].volumeInfo);
+            }
+
+            if (numLibrosCargados + 3 < response.items.length) {
+                $("#libro-busqueda-container").append(`<button class="btn btn-primary text-center ver-mas-btn-busqueda" data-titulo="${titulo}">Ver más</button>`);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error al cargar más libros por título:", error);
+        }
+    });
+}
+
+
+// Función para agregar libros por categoría
+function agregarLibroPorCategoria(libro, categoria) {
+    let thumbnailUrl = libro.imageLinks && libro.imageLinks.thumbnail ? libro.imageLinks.thumbnail : '';
+
+    if (!thumbnailUrl) {
+        thumbnailUrl = "../public/noDisponible.jpg";
+    }
+
     let cardHtml = `
     <div class="producto col-12 col-md-6 col-lg-3">
-    <div class="d-flex justify-content-center align-items-center">
-        <div class="card mb-4">
-            <img src="${libro.imageLinks.thumbnail}" class="card-img-top" alt="${libro.title}" />
-            <div class="card-body">
-                <h5 class="card-title">${libro.title}</h5>
-                <p class="card-text typeM bold">$XX</p> <!-- Falta el precio, ya que no está disponible en la API -->
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#btncomprar">
-                    Agregar al carrito
-                </button>
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="card mb-4">
+                <img src="${thumbnailUrl}" class="card-img-top" alt="${libro.title}" />
+                <div class="card-body">
+                    <h5 class="card-title">${libro.title}</h5>
+                    <p class="card-text typeM bold">$XX</p> <!-- Falta el precio, ya que no está disponible en la API -->
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#btncomprar">
+                        Agregar al carrito
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-
     `;
     $("#" + categoria.toLowerCase() + "-container").append(cardHtml);
 }
+
+// Función para agregar libros por búsqueda
+function agregarLibroPorBusqueda(libro) {
+    let thumbnailUrl = libro.imageLinks && libro.imageLinks.thumbnail ? libro.imageLinks.thumbnail : '';
+
+    if (!thumbnailUrl) {
+        thumbnailUrl = "../public/noDisponible.jpg";
+    }
+
+    let cardHtml = `
+    <div class="producto col-12 col-md-6 col-lg-4">
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="card mb-4">
+                <img src="${thumbnailUrl}" class="card-img-top" alt="${libro.title}" />
+                <div class="card-body">
+                    <h5 class="card-title">${libro.title}</h5>
+                    <p class="card-text typeM bold">$XX</p>
+                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#btncomprar">
+                        Agregar al carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    $("#libro-busqueda-container").append(cardHtml);
+}
+
 
 // Cuando el documento esté listo, cargar libros para todas las categorías
 $(document).ready(function () {
@@ -102,5 +192,22 @@ $(document).ready(function () {
     cargarLibrosPorCategoria("anime");
 });
 
+// Manejar el evento de cambio en el campo de entrada de título en la sección de reseñas
+$("#input-titulo").on("input", function () {
+    let titulo = $(this).val().trim();
+    if (titulo !== "") {
+        cargarLibrosPorTituloReseñas(titulo);
+    } else {
+        $("#reseñas-container").empty();
+    }
+});
 
-
+// Manejar el evento de cambio en el campo de entrada de título en la sección de búsqueda de libros
+$("#input-busqueda").on("input", function () {
+    let titulo = $(this).val().trim();
+    if (titulo !== "") {
+        cargarLibrosPorTituloBusqueda(titulo);
+    } else {
+        $("#libro-busqueda-container").empty();
+    }
+});
