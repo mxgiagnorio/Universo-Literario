@@ -23,7 +23,7 @@ $(document).ready(function () {
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="card">
-                            <img src="${portada}" class="card-img-top img-fluid" alt="${titulo}">
+                            <img src="${portada}" class="card-img-top" alt="${titulo}">
                             <div class="card-body">
                                 <h5 class="card-title">${titulo}</h5>
                                 <p class="card-text">Precio: ${precio}</p>
