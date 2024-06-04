@@ -1,5 +1,6 @@
 // Función para cargar libros desde la API por categoría
 function cargarLibrosPorCategoria(categoria) {
+
     let apiUrl = "https://www.googleapis.com/books/v1/volumes?q=subject:" + categoria;
 
     $.ajax({
