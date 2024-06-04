@@ -74,3 +74,34 @@
     max-height: auto;
     object-fit: cover;
 }
+
+/*  -------------------------------  */
+/*       INICIO: BOTON WHATSAPP      */
+/*  -------------------------------  */
+.btn-wsp {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background-color: #4dc247;
+    border-radius: 32px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-wsp img {
+    width: 40px;
+    height: 40px;
+    filter: invert(1);
+}
+
+.btn-wsp:hover {
+    opacity: 60%;
+}
+
+/*  ----------------------------  */
+/*      FIN: BOTON WHATSAPP       */
+/*  ----------------------------  */
