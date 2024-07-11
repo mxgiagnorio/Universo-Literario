@@ -1,4 +1,4 @@
-function validateForm(form, validationRules) {
+async function validateForm(form, validationRules) {
   let errors = {};
 
   // Limpia los mensajes que quedaron anteriores
@@ -43,8 +43,39 @@ function validateForm(form, validationRules) {
     return false;
   }
 
-  // vuelve al index
-  window.location.href = "../../index.html";
+  // Si no hay errores, enviar datos al backend
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((value, key) => {
+    data[key] = value;
+  });
+
+  try {
+    const response = await fetch("http://localhost:4567", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      // Manejar la respuesta del servidor
+      const result = await response.json();
+      console.log("Success:", result);
+
+      // Redirigir al index si la solicitud es exitosa
+      window.location.href = "../../index.html";
+    } else {
+      // Manejar errores del servidor
+      const error = await response.json();
+      console.error("Error:", error);
+      // Mostrar el error en el formulario si es necesario
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+
   return false;
 }
 

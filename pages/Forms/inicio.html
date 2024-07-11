@@ -34,8 +34,10 @@
     >
       <div class="col-md-6 py-4">
         <form
-          id="loginForm"
-          onsubmit="return validateForm(this, loginValidationRules)"
+          id="registerForm"
+          onsubmit="return validateForm(this, registerValidationRules)"
+          action="http://localhost:4567/login"
+          method="POST"
         >
           <h2 class="text-center text-white">Inicio de Sesión</h2>
           <div class="mb-3">
