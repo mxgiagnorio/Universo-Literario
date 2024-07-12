@@ -23,7 +23,7 @@ $(document).ready(function () {
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="card">
-                            <img src="${portada}" class="card-img-top" alt="${titulo}">
+                            <img src="${portada}" class="card-img-top img-fluid" alt="${titulo}">
                             <div class="card-body">
                                 <h5 class="card-title">${titulo}</h5>
                                 <p class="card-text">Precio: ${precio}</p>
@@ -152,3 +152,47 @@ $("#input-busqueda").on("input", function () {
         $("#libro-container").empty();
     }
 });
+<<<<<<< HEAD
+=======
+
+
+function isTokenPresent() {
+    const token = localStorage.getItem("authToken");
+    return token !== null;
+}
+
+function isTokenExpired(token) {
+    if (!token) return true;
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const expirationDate = payload.exp * 1000;
+    return Date.now() > expirationDate;
+}
+
+function checkToken() {
+    const token = localStorage.getItem("authToken");
+    if (!token || isTokenExpired(token)) {
+        localStorage.removeItem("authToken");
+        window.location.href = "./pages/Forms/inicio.html";
+    }
+}
+
+function updateUI() {
+    const userButtons = document.getElementById("userButtons");
+
+    if (!isTokenPresent()) {
+        userButtons.style.display = "block"; // Mostrar el botón si el token está presente
+    } else {
+        userButtons.style.display = "none"; // Ocultar el botón si no está presente
+    }
+}
+
+function logout() {
+    localStorage.removeItem("authToken"); // Eliminar el token
+    window.location.href = "./pages/Forms/inicio.html"; // Redirigir al inicio de sesión
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    checkToken();
+    updateUI();
+});
+>>>>>>> master

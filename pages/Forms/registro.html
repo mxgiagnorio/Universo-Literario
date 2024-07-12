@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,10 +33,7 @@
     <div class="container bg-primary py-4">
       <div class="row justify-content-center">
         <div class="col-md-6">
-          <form
-            id="registerForm"
-            onsubmit="return validateForm(this, registerValidationRules)"
-          >
+          <form id="registerForm" onsubmit="return validateForm(this, registerValidationRules)" action="http://localhost:4567/register" method="POST">
             <h2 class="tituloRegistrarse text-center text-white">
               Registrarse
             </h2>
@@ -142,3 +140,71 @@
 
   
 
+=======
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universo Literario</title>
+  <link rel="icon" href="../../public/logo-ico.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
+    <a href="../../index.html" class="navbar-brand d-flex align-items-center">
+      <img class=" rounded-circle mr-2" src="../../public/logo.jpg" alt="Universo Literario"
+        style="height: 60px; width: 60px;">
+      <strong>Universo Literario</strong>
+    </a>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="card mx-auto" style="max-width: 600px;">
+      <div class="card-body">
+        <form id="registerForm" action="http://localhost:4567/register" method="POST">
+          <h2 class="text-center text-white bg-primary p-3 rounded">Registrarse</h2>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Nombre de usuario" id="username" name="username"
+              required />
+            <div class="text-danger small" id="usernameError"></div>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" placeholder="Email" id="email" name="email" required />
+            <div class="text-danger small" id="emailError"></div>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Contraseña" id="password" name="password"
+              required />
+            <div class="text-danger small" id="passwordError"></div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Nombre Completo" id="fullName" name="fullName"
+              required />
+            <div class="text-danger small" id="fullNameError"></div>
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" name="terms" id="terms" required />
+            <label class="form-check-label" for="terms">Acepta Términos y Condiciones</label>
+            <div class="text-danger small" id="termsError"></div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary w-100" type="submit">Registrarse</button>
+          </div>
+          <hr class="my-4" />
+          <div class="text-center">
+            <a class="text-primary" href="#">¿Necesitas ayuda?</a>
+            |
+            <a class="text-primary" href="./inicio.html">Iniciar Sesión</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/registro.js"></script>
+</body>
+
+</html>
+>>>>>>> master

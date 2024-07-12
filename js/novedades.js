@@ -254,3 +254,47 @@ $("#input-busqueda").on("input", function () {
         $("#libro-container").empty();
     }
 });
+<<<<<<< HEAD
+=======
+
+
+function isTokenPresent() {
+    const token = localStorage.getItem("authToken");
+    return token !== null;
+}
+
+function isTokenExpired(token) {
+    if (!token) return true;
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const expirationDate = payload.exp * 1000;
+    return Date.now() > expirationDate;
+}
+
+function checkToken() {
+    const token = localStorage.getItem("authToken");
+    if (!token || isTokenExpired(token)) {
+        localStorage.removeItem("authToken");
+        window.location.href = "../pages/Forms/inicio.html";
+    }
+}
+
+function updateUI() {
+    const userButtons = document.getElementById("userButtons");
+
+    if (!isTokenPresent()) {
+        userButtons.style.display = "block"; // Mostrar el botón si el token está presente
+    } else {
+        userButtons.style.display = "none"; // Ocultar el botón si no está presente
+    }
+}
+
+function logout() {
+    localStorage.removeItem("authToken"); // Eliminar el token
+    window.location.href = "../pages/Forms/inicio.html"; // Redirigir al inicio de sesión
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    checkToken();
+    updateUI();
+});
+>>>>>>> master
