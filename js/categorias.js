@@ -210,9 +210,6 @@ $("#input-busqueda").on("input", function () {
     } else {
         $("#libro-busqueda-container").empty();
     }
-<<<<<<< HEAD
-});
-=======
 });
 
 
@@ -256,4 +253,3 @@ document.addEventListener("DOMContentLoaded", () => {
     checkToken();
     updateUI();
 });
->>>>>>> master
