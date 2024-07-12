@@ -152,8 +152,6 @@ $("#input-busqueda").on("input", function () {
         $("#libro-container").empty();
     }
 });
-<<<<<<< HEAD
-=======
 
 
 function isTokenPresent() {
@@ -195,4 +193,3 @@ document.addEventListener("DOMContentLoaded", () => {
     checkToken();
     updateUI();
 });
->>>>>>> master
